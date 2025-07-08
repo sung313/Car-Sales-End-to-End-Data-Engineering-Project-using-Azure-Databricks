@@ -27,7 +27,7 @@ The architecture follows a modern **lakehouse pattern**, enabling scalable and s
 
 ## ⚙️ Azure Data Factory Pipeline
 
-![Azure Data Factory Pipeline](./assets/azure_data_factory_pipeline.png)
+![Azure Data Factory Pipeline](https://github.com/jotstolu/Car-Sales-End-to-End-Data-Engineering-Project-using-Azure-Databricks/blob/main/asset/Azure%20Data%20factory%20pipeline.png?raw=true)
 
 This pipeline automates the **ingestion phase**, pulling data from GitHub and loading it into Azure SQL Database.
 
