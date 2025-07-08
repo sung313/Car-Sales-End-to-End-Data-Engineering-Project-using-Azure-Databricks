@@ -41,7 +41,7 @@ This pipeline automates the **ingestion phase**, pulling data from GitHub and lo
 
 ## 🔁 Databricks Workflow & Data Model
 
-![Databricks Data Model Pipeline](./assets/databricks_data_model_pipeline.png)
+![Databricks Data Model Pipeline](https://github.com/user-attachments/assets/abcd180d-4653-4249-a9a1-79268d31c6bd))
 
 The Databricks pipeline implements the **medallion architecture** using Delta Live Tables:
 
